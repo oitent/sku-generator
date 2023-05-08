@@ -2,20 +2,24 @@ import { useState } from 'react';
 import parametersData from '../parameters.json';
 
 const generateSKUCombinations = (selectedParameters) => {
-  const parameterKeys = Object.keys(selectedParameters);
+  const parameterOrder = ['Marca', 'Nome', 'Categoria', 'Cor', 'Subcategoria', 'Tamanho'];
   const combinations = [];
 
   function generateCombo(prefix, currentIndex) {
-    if (currentIndex === parameterKeys.length) {
+    if (currentIndex === parameterOrder.length) {
       combinations.push(prefix);
       return;
     }
 
-    const currentParameter = parameterKeys[currentIndex];
-    const currentValues = selectedParameters[currentParameter];
+    const currentParameter = parameterOrder[currentIndex];
+    const currentValues = selectedParameters[currentParameter] || [];
 
-    for (const value of currentValues) {
-      generateCombo(prefix + value, currentIndex + 1);
+    if (currentValues.length === 0) {
+      generateCombo(prefix, currentIndex + 1);
+    } else {
+      for (const value of currentValues) {
+        generateCombo(prefix + value, currentIndex + 1);
+      }
     }
   }
 
@@ -52,7 +56,7 @@ const IndexPage = () => {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-4">SKU Generator</h1>
       <form onSubmit={handleSubmit} className="space-y-4 flex flex-col w-full">
-        <ol className='flex flex-row gap-4'>
+        <ul className='flex flex-row gap-4'>
           {Object.keys(parametersData).map((parameter) => (
             <li key={parameter} className='flex flex-col'>
               <p className="text-lg font-semibold mb-2">{parameter}:</p>
@@ -71,7 +75,7 @@ const IndexPage = () => {
                 </label>
               ))}
             </li>
-          ))}</ol>
+          ))}</ul>
         <div>
           <button
             type="submit"
