@@ -1,0 +1,38 @@
+{
+  "Marca": [
+    {
+      "value": "Paula Faria",
+      "id": "99"
+    }
+  ],
+  "Nome": [
+    {
+      "value": "Larissa",
+      "id": "01"
+    }
+  ],
+  "Categoria": [
+    {
+      "value": "Vestido",
+      "id": "01"
+    }
+  ],
+  "Cor": [
+    {
+      "value": "Pink",
+      "id": "01"
+    }
+  ],
+  "Subcategoria": [
+    {
+      "value": "Longo",
+      "id": "01"
+    }
+  ],
+  "Tamanho": [
+    {
+      "value": "P",
+      "id": "01"
+    }
+  ]
+}
