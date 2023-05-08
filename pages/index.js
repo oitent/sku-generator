@@ -27,12 +27,19 @@ const IndexPage = () => {
   const [selectedParameters, setSelectedParameters] = useState({});
   const [skuList, setSkuList] = useState([]);
 
-  const handleChange = (e, parameter) => {
-    const selectedOptions = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setSelectedParameters({ ...selectedParameters, [parameter]: selectedOptions });
+  const handleChange = (e, parameter, value) => {
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setSelectedParameters({
+        ...selectedParameters,
+        [parameter]: [...(selectedParameters[parameter] || []), value],
+      });
+    } else {
+      setSelectedParameters({
+        ...selectedParameters,
+        [parameter]: selectedParameters[parameter].filter((v) => v !== value),
+      });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -44,32 +51,34 @@ const IndexPage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-4">SKU Generator</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {Object.keys(parametersData).map((parameter) => (
-          <div key={parameter} className="flex items-center space-x-2">
-            <label htmlFor={parameter} className="text-lg font-semibold">
-              {parameter}:
-            </label>
-            <select
-              id={parameter}
-              multiple
-              onChange={(e) => handleChange(e, parameter)}
-              className="rounded-md border border-gray-300 px-3 py-2"
-            >
+      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col w-full">
+        <ol className='flex flex-row gap-4'>
+          {Object.keys(parametersData).map((parameter) => (
+            <li key={parameter} className='flex flex-col'>
+              <p className="text-lg font-semibold mb-2">{parameter}:</p>
               {parametersData[parameter].map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.value}
-                </option>
+                <label
+                  key={option.id}
+                  className="inline-flex items-center space-x-1 mr-4 mb-2"
+                >
+                  <input
+                    type="checkbox"
+                    value={option.id}
+                    onChange={(e) => handleChange(e, parameter, option.id)}
+                    className="rounded-md border-gray-300"
+                  />
+                  <span>{option.value}</span>
+                </label>
               ))}
-            </select>
-          </div>
-        ))}
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-md mt-4"
-        >
-          Generate SKUs
-        </button>
+            </li>
+          ))}</ol>
+        <div>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-600 text-white rounded-md mt-4"
+          >
+            Generate SKUs
+          </button></div>
       </form>
       <h2 className="text-2xl font-bold mt-8 mb-4">Generated SKUs</h2>
       <table className="w-full table-auto">

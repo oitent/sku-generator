@@ -3,6 +3,10 @@
     {
       "value": "Paula Faria",
       "id": "99"
+    },
+    {
+      "value": "São Paulo",
+      "id": "89"
     }
   ],
   "Nome": [
@@ -13,26 +17,203 @@
   ],
   "Categoria": [
     {
-      "value": "Vestido",
+      "value": "Live",
       "id": "01"
+    },
+    {
+      "value": "Blusas",
+      "id": "02"
+    },
+    {
+      "value": "Bodys",
+      "id": "03"
+    },
+    {
+      "value": "Calças",
+      "id": "04"
+    },
+    {
+      "value": "Conjuntos",
+      "id": "05"
+    },
+    {
+      "value": "Macacão",
+      "id": "06"
+    },
+    {
+      "value": "Macaquinhos",
+      "id": "07"
+    },
+    {
+      "value": "Saias",
+      "id": "08"
+    },
+    {
+      "value": "Shorts",
+      "id": "09"
+    },
+    {
+      "value": "Outlet",
+      "id": "10"
+    },
+    {
+      "value": "Casacos",
+      "id": "11"
+    },
+    {
+      "value": "FESTA",
+      "id": "12"
+    },
+    {
+      "value": "Vestidos",
+      "id": "13"
+    },
+    {
+      "value": "Todos",
+      "id": "14"
+    },
+    {
+      "value": "Vestido Curto",
+      "id": "15"
+    },
+    {
+      "value": "Vestido Midi",
+      "id": "16"
+    },
+    {
+      "value": "Vestido Longo",
+      "id": "17"
+    },
+    {
+      "value": "BLACK FRIDAY",
+      "id": "18"
+    },
+    {
+      "value": "SEMANA DO CLIENTE",
+      "id": "19"
     }
   ],
+
   "Cor": [
     {
-      "value": "Pink",
+      "value": "OFF",
       "id": "01"
+    },
+    {
+      "value": "NUDE",
+      "id": "02"
+    },
+    {
+      "value": "AMARELO",
+      "id": "03"
+    },
+    {
+      "value": "FLORAL",
+      "id": "04"
+    },
+    {
+      "value": "LILAS",
+      "id": "05"
+    },
+    {
+      "value": "LISTRADO",
+      "id": "06"
+    },
+    {
+      "value": "JEANS",
+      "id": "07"
+    },
+    {
+      "value": "ROXO",
+      "id": "08"
+    },
+    {
+      "value": "ESTAMPADO",
+      "id": "09"
+    },
+    {
+      "value": "ONÇA",
+      "id": "10"
+    },
+    {
+      "value": "TERRA",
+      "id": "11"
+    },
+    {
+      "value": "ROSA",
+      "id": "12"
+    },
+    {
+      "value": "MARSALA",
+      "id": "13"
+    },
+    {
+      "value": "CINZA",
+      "id": "14"
+    },
+    {
+      "value": "VERDE",
+      "id": "15"
+    },
+    {
+      "value": "VERMELHO",
+      "id": "16"
+    },
+    {
+      "value": "BRANCO",
+      "id": "17"
+    },
+    {
+      "value": "FUCSIA",
+      "id": "18"
+    },
+    {
+      "value": "AZUL",
+      "id": "19"
+    },
+    {
+      "value": "PRETO",
+      "id": "20"
     }
   ],
   "Subcategoria": [
     {
+      "value": "Não Tem",
+      "id": "00"
+    },
+    {
       "value": "Longo",
       "id": "01"
+    },
+    {
+      "value": "Midi",
+      "id": "02"
+    },
+    {
+      "value": "Curto",
+      "id": "03"
     }
   ],
   "Tamanho": [
     {
       "value": "P",
       "id": "01"
+    },
+    {
+      "value": "M",
+      "id": "02"
+    },
+    {
+      "value": "G",
+      "id": "03"
+    },
+    {
+      "value": "GG",
+      "id": "04"
+    },
+    {
+      "value": "Único",
+      "id": "05"
     }
   ]
 }
