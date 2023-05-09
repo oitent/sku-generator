@@ -1,6 +1,10 @@
 {
   "Marca": [
     {
+      "value": "NÃO TEM",
+      "id": "00"
+    },
+    {
       "value": "Paula Faria",
       "id": "99"
     },
@@ -11,7 +15,7 @@
   ],
   "Nome": [
     {
-      "value": "SEM NOME",
+      "value": "NÃO TEM",
       "id": "00"
     },
     {
@@ -32,6 +36,10 @@
     }
   ],
   "Categoria": [
+    {
+      "value": "NÃO TEM",
+      "id": "00"
+    },
     {
       "value": "Live",
       "id": "01"
@@ -95,6 +103,10 @@
   ],
 
   "Cor": [
+    {
+      "value": "NÃO TEM",
+      "id": "00"
+    },
     {
       "value": "OFF",
       "id": "01"
@@ -262,7 +274,7 @@
   ],
   "Subcategoria": [
     {
-      "value": "Não Tem",
+      "value": "NÃO TEM",
       "id": "00"
     },
     {
@@ -276,6 +288,10 @@
     {
       "value": "Curto",
       "id": "03"
+    },
+    {
+      "value": "Festa",
+      "id": "04"
     }
   ],
   "Tamanho": [
