@@ -186,6 +186,78 @@
     {
       "value": "CORAL",
       "id": "23"
+    },
+    {
+      "value": "AZUL MARINHO",
+      "id": "24"
+    },
+    {
+      "value": "TERRACOTA",
+      "id": "25"
+    },
+    {
+      "value": "AZUL TIFFANY",
+      "id": "26"
+    },
+    {
+      "value": "VERDE CLARO",
+      "id": "27"
+    },
+    {
+      "value": "VERDE MENTA",
+      "id": "28"
+    },
+    {
+      "value": "XADREZ",
+      "id": "29"
+    },
+    {
+      "value": "PINK",
+      "id": "30"
+    },
+    {
+      "value": "LIMA",
+      "id": "31"
+    },
+    {
+      "value": "MARROM",
+      "id": "32"
+    },
+    {
+      "value": "LARANJA",
+      "id": "33"
+    },
+    {
+      "value": "DOURADO",
+      "id": "34"
+    },
+    {
+      "value": "BEGE",
+      "id": "35"
+    },
+    {
+      "value": "VERDE BANDEIRA",
+      "id": "36"
+    },
+    {
+      "value": "AZUL CLARO",
+      "id": "37"
+    },
+    {
+      "value": "JEANS CLARO",
+      "id": "38"
+    },
+    {
+      "value": "JEANS ESCURO",
+      "id": "39"
+    },
+    {
+      "value": "VERDE MUSGO",
+      "id": "40"
+    },
+    {
+      "value": "POÁ",
+      "id": "41"
     }
   ],
   "Subcategoria": [
@@ -208,24 +280,60 @@
   ],
   "Tamanho": [
     {
-      "value": "P",
+      "value": "NÃO TEM",
+      "id": "00"
+    },
+    {
+      "value": "PP",
       "id": "01"
     },
     {
-      "value": "M",
+      "value": "P",
       "id": "02"
     },
     {
-      "value": "G",
+      "value": "M",
       "id": "03"
     },
     {
-      "value": "GG",
+      "value": "G",
       "id": "04"
     },
     {
-      "value": "Único",
+      "value": "GG",
       "id": "05"
+    },
+    {
+      "value": "Único",
+      "id": "06"
+    },
+    {
+      "value": "34",
+      "id": "07"
+    },
+    {
+      "value": "36",
+      "id": "08"
+    },
+    {
+      "value": "38",
+      "id": "09"
+    },
+    {
+      "value": "40",
+      "id": "10"
+    },
+    {
+      "value": "42",
+      "id": "11"
+    },
+    {
+      "value": "44",
+      "id": "12"
+    },
+    {
+      "value": "46",
+      "id": "13"
     }
   ]
 }
