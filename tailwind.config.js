@@ -3,7 +3,8 @@ const colors = require('tailwindcss/colors')
 /** @type {import("tailwindcss").Config} */
 
 module.exports = {
-  content: [
+  mode: 'jit',
+  purge: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./node_modules/flowbite-react/**/*.js",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -107,5 +108,6 @@ module.exports = {
         "Noto Color Emoji"
       ]
     }
+
   }
 }
