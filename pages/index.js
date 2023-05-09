@@ -75,7 +75,7 @@ const IndexPage = () => {
   };
 
   return (
-    <main className='dark:bg-black bg-gray-100 min-h-screen h-full'>
+    <main className='dark:bg-black bg-gray-100 min-h-screen'>
       <div className="mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-4 dark:text-white text-black">SKU Generator</h1>
         <form onSubmit={handleSubmit} className="flex flex-row w-full justify-between items-start gap-4">
@@ -97,20 +97,22 @@ const IndexPage = () => {
                   onChange={(e) => handleSearch(e, parameter)}
                   className="mb-2 p-1 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-md"
                 />
-                {filteredOptions(parameter).map((option) => (
-                  <label
-                    key={option.id}
-                    className="inline-flex items-center space-x-1 mr-4 mb-2 text-black dark:text-gray-400"
-                  >
-                    <input
-                      type="checkbox"
-                      value={option.id}
-                      onChange={(e) => handleChange(e, parameter, option.id)}
-                      className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-300 mr-1"
-                    />
-                    <span>{option.value}</span>
-                  </label>
-                ))}
+                <div className='flex flex-col overflow-y-scroll max-h-96 p-1 no-scrollbar border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg bg-gradient-to-t from-gray-900 to-gray-800'>
+                  {filteredOptions(parameter).map((option) => (
+                    <label
+                      key={option.id}
+                      className="inline-flex items-center space-x-1 mr-4 mb-2 text-black dark:text-gray-400"
+                    >
+                      <input
+                        type="checkbox"
+                        value={option.id}
+                        onChange={(e) => handleChange(e, parameter, option.id)}
+                        className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-300 mr-1"
+                      />
+                      <span>{option.value}</span>
+                    </label>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>
