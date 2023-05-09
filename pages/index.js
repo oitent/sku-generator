@@ -42,7 +42,10 @@ const IndexPage = () => {
     } else {
       setSelectedParameters({
         ...selectedParameters,
-        [parameter]: selectedParameters[parameter].filter((v) => v !== value),
+        [parameter]:
+          selectedParameters[parameter]
+            ? selectedParameters[parameter].filter((v) => v !== value)
+            : [],
       });
     }
   };
@@ -67,17 +70,35 @@ const IndexPage = () => {
       });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const combinations = generateSKUCombinations(selectedParameters);
     setSkuList([...skuList, ...combinations]);
   };
 
+  const clearForm = () => {
+    setSelectedParameters({});
+    setSearchTerms({});
+    setSkuList([]);
+
+    // Uncheck all checkboxes
+    const checkboxes = document.querySelectorAll("input[type='checkbox']");
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+  };
+
   return (
     <main className='dark:bg-black bg-gray-100 min-h-screen'>
       <div className="mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-4 dark:text-white text-black">SKU Generator</h1>
+        <button
+          type="button" // Set the button type to "button"
+          onClick={clearForm}
+          className="px-4 py-2 bg-red-600 text-white rounded-md mb-12"
+        >
+          Limpar resultados
+        </button>
         <form onSubmit={handleSubmit} className="flex flex-row w-full justify-between items-start gap-4">
 
           <ul className="flex flex-row gap-4 bg-gray-200 dark:bg-gray-800 rounded-lg p-6">
