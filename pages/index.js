@@ -118,7 +118,7 @@ const IndexPage = () => {
                   onChange={(e) => handleSearch(e, parameter)}
                   className="mb-2 p-1 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 rounded-md"
                 />
-                <div className='flex flex-col overflow-y-scroll max-h-20vh p-2 no-scrollbar border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg bg-gradient-to-t dark:from-gray-900 dark:to-gray-800'>
+                <div className='flex flex-col overflow-y-scroll p-2 no-scrollbar border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg bg-gradient-to-t dark:from-gray-900 dark:to-gray-800' style={{ maxHeight: '50vh' }}>
                   {filteredOptions(parameter).map((option) => (
                     <label
                       key={option.id}
