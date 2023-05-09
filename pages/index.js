@@ -106,7 +106,6 @@ const IndexPage = () => {
                       type="checkbox"
                       value={option.id}
                       onChange={(e) => handleChange(e, parameter, option.id)}
-                      required
                       className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-300 mr-1"
                     />
                     <span>{option.value}</span>
