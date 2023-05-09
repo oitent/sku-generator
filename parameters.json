@@ -174,6 +174,18 @@
     {
       "value": "PRETO",
       "id": "20"
+    },
+    {
+      "value": "VERDE OLIVA",
+      "id": "21"
+    },
+    {
+      "value": "AZUL ROYAL",
+      "id": "22"
+    },
+    {
+      "value": "CORAL",
+      "id": "23"
     }
   ],
   "Subcategoria": [
