@@ -23,7 +23,6 @@ const generateSKUCombinations = (selectedParameters) => {
     }
   }
 
-
   generateCombo('', [], 0);
   return combinations;
 };
@@ -91,20 +90,22 @@ const IndexPage = () => {
 
   return (
     <main className='dark:bg-black bg-gray-100 min-h-screen overflow-x-hidden'>
-      <div className="mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4 dark:text-white text-black ">SKU Generator</h1>
+      <div className="mx-auto px-4 pb-8 pt-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full justify-between items-start gap-4">
-          <div className='flex flex-row w-96 gap-6'>
-            <button
-              type="button" // Set the button type to "button"
-              onClick={clearForm}
-              className="px-4 py-2 bg-red-600 text-white rounded-md"
-            >
-              Limpar resultados
-            </button>
+          <div className='flex flex-row w-full justify-between gap-6'>
+            <div className='flex gap-6'>
+              <h1 className="text-4xl font-bold dark:text-white text-black ">SKU Generator</h1>
+              <button
+                type="button" // Set the button type to "button"
+                onClick={clearForm}
+                className="px-4 py-2 bg-red-600 text-white rounded-md"
+              >
+                Limpar resultados
+              </button>
+            </div>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md"
+              className="w-96 px-4 py-2 bg-blue-600 text-white rounded-md"
             >
               Gerar SKUs
             </button>
@@ -150,12 +151,12 @@ const IndexPage = () => {
           <div className='flex flex-col w-full flex-grow flex-wrap bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-500'>
 
             <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">SKUs Gerados</h2>
-            <table className="w-full table-auto">
+            <table className="w-full table-auto border border-gray-500">
               <thead>
                 <tr>
-                  <th className="px-4 py-2 text-black dark:text-white">SKU</th>
+                  <th className="px-4 py-2 text-black dark:text-white text-left">SKU</th>
                   {parameterOrder.map((parameter) => (
-                    <th key={parameter} className="px-4 py-2 text-black dark:text-white">
+                    <th key={parameter} className="px-4 py-2 text-black dark:text-white text-left">
                       {parameter}
                     </th>
                   ))}
@@ -163,7 +164,7 @@ const IndexPage = () => {
               </thead>
               <tbody>
                 {skuList.map((skuData, index) => (
-                  <tr key={index} className="bg-gray-700">
+                  <tr key={index} className="even:bg-gray-700 odd:bg-gray-600">
                     <td className="px-4 leading-tallest text-white font-mono">{skuData.sku}</td>
                     {parameterOrder.map((parameter) => {
                       const option = parametersData[parameter].find(
