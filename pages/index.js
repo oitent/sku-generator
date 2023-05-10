@@ -120,7 +120,7 @@ const IndexPage = () => {
         <div
           id="alert-border-3"
           role="alert"
-          class="flex absolute z-50 mt-12 left-0 right-0 mx-auto max-w-md p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-900 dark:border-green-600 rounded-lg shadow-lg justify-center items-center"
+          className="flex fixed z-50 top-4 left-0 right-0 mx-auto max-w-md p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-900 dark:border-green-600 rounded-lg shadow-lg justify-center items-center"
         >
           <BsFillInfoCircleFill className='text-green-400' />
           <div class="ml-3 text-sm font-medium leading-none">
@@ -132,13 +132,6 @@ const IndexPage = () => {
           </button>
         </div>
       )}
-      <div
-        id="alert-additional-content-3"
-        className="p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 hidden"
-        role="alert"
-      >
-        {/* ... rest of the alert component JSX ... */}
-      </div>
       <div className="mx-auto px-4 pb-8 pt-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full justify-between items-start gap-4">
           <div className='flex flex-row w-full justify-between gap-6'>
@@ -187,7 +180,7 @@ const IndexPage = () => {
                         type="checkbox"
                         value={option.id}
                         onChange={(e) => handleChange(e, parameter, option.id)}
-                        className="rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-300 mr-1"
+                        className="rounded-md border-gray-300 dark:border-gray-500 dark:bg-transparent mr-1"
                       />
                       <span>{option.value}</span>
                     </label>
