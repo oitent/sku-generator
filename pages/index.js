@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BsClipboard } from 'react-icons/bs';
+import { BsClipboard, BsFillInfoCircleFill, BsX } from 'react-icons/bs';
 import parametersData from '../parameters.json';
 
 const parameterOrder = ['Marca', 'Nome', 'Categoria', 'Cor', 'Subcategoria', 'Tamanho'];
@@ -100,8 +100,45 @@ const IndexPage = () => {
     });
   };
 
+  const [showAlert, setShowAlert] = useState(false); // Add showAlert state
+  const showAlertMessage = () => {
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000); // Show alert for 3 seconds
+  };
+
+  const handleCopy = (text) => {
+    copyToClipboard(text);
+    showAlertMessage(); // Show the alert message when copying
+  };
+
+
   return (
     <main className='dark:bg-black bg-gray-100 min-h-screen overflow-x-hidden'>
+      {showAlert && (
+        <div
+          id="alert-border-3"
+          role="alert"
+          class="flex absolute z-50 mt-12 left-0 right-0 mx-auto max-w-md p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-900 dark:border-green-600 rounded-lg shadow-lg justify-center items-center"
+        >
+          <BsFillInfoCircleFill className='text-green-400' />
+          <div class="ml-3 text-sm font-medium leading-none">
+            SKU copiado com <a href="#" class="font-semibold underline hover:no-underline">sucesso</a>.
+          </div>
+          <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-border-3" aria-label="Close">
+            <span class="sr-only">Dismiss</span>
+            <BsX className='text-xl' />
+          </button>
+        </div>
+      )}
+      <div
+        id="alert-additional-content-3"
+        className="p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 hidden"
+        role="alert"
+      >
+        {/* ... rest of the alert component JSX ... */}
+      </div>
       <div className="mx-auto px-4 pb-8 pt-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full justify-between items-start gap-4">
           <div className='flex flex-row w-full justify-between gap-6'>
@@ -123,11 +160,11 @@ const IndexPage = () => {
             </button>
           </div>
 
-          <ul className="flex flex-row gap-4 w-full bg-gray-200 dark:bg-gray-800 rounded-lg p-6">
+          <ul className="flex flex-row gap-4 w-full bg-gray-200 dark:bg-gray-800 rounded-lg p-6 overflow-x-scroll no-scrollbar">
             {Object.keys(parametersData).map((parameter) => (
               <li
                 key={parameter}
-                className="flex flex-col w-full"
+                className="flex flex-col w-10/12"
                 data-tooltip-target="tooltip-default"
               >
                 <p className="text-lg font-semibold mb-2 text-black dark:text-gray-200">
@@ -181,7 +218,7 @@ const IndexPage = () => {
                     <tr
                       key={index}
                       className="even:bg-gray-700 odd:bg-gray-600 cursor-pointer"
-                      onClick={() => copyToClipboard(skuData.sku)} // Copy SKU when row is clicked
+                      onClick={() => handleCopy(skuData.sku)} // Copy SKU when row is clicked
                     >
                       <td className="px-4 leading-tallest text-white font-mono text-center">
                         <button
@@ -189,7 +226,7 @@ const IndexPage = () => {
                           className="text-white"
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent row click event
-                            copyToClipboard(skuData.sku);
+                            handleCopy(skuData.sku);
                           }}
                         >
                           <BsClipboard />
