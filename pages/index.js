@@ -120,23 +120,21 @@ const IndexPage = () => {
         <div
           id="alert-border-3"
           role="alert"
-          className="flex fixed z-50 top-4 left-0 right-0 mx-auto max-w-md p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-900 dark:border-green-600 rounded-lg shadow-lg justify-center items-center"
+          className="flex fixed z-50 top-4 left-0 right-0 mx-4 sm:mx-auto max-w-md px-4 py-2.5 mb-4 text-green-800 border border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-900 dark:border-green-600 rounded-lg shadow-lg justify-center items-center"
         >
           <BsFillInfoCircleFill className='text-green-400' />
           <div class="ml-3 text-sm font-medium leading-none">
             SKU copiado com <a href="#" class="font-semibold underline hover:no-underline">sucesso</a>.
           </div>
-          <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-border-3" aria-label="Close">
-            <span class="sr-only">Dismiss</span>
-            <BsX className='text-xl' />
-          </button>
         </div>
       )}
       <div className="mx-auto px-4 pb-8 pt-4">
         <form onSubmit={handleSubmit} className="flex flex-col w-full justify-between items-start gap-4">
-          <div className='flex flex-row w-full justify-between gap-6'>
-            <div className='flex gap-6'>
+          <div className='flex flex-col sm:flex-row w-full justify-between gap-2 sm:gap-6'>
+            <div className='flex gap-2 sm:gap-6'>
               <h1 className="text-4xl font-bold dark:text-white text-black ">SKU Generator</h1>
+            </div>
+            <div className='flex flex-grow gap-2 sm:gap-6 justify-between'>
               <button
                 type="button" // Set the button type to "button"
                 onClick={clearForm}
@@ -144,16 +142,16 @@ const IndexPage = () => {
               >
                 Limpar resultados
               </button>
+              <button
+                type="submit"
+                className="w-96 px-4 py-2 bg-blue-600 text-white rounded-md"
+              >
+                Gerar SKUs
+              </button>
             </div>
-            <button
-              type="submit"
-              className="w-96 px-4 py-2 bg-blue-600 text-white rounded-md"
-            >
-              Gerar SKUs
-            </button>
           </div>
 
-          <ul className="flex flex-row gap-4 w-full bg-gray-200 dark:bg-gray-800 rounded-lg p-6 overflow-x-scroll no-scrollbar">
+          <ul className="flex flex-row gap-4 w-full bg-gray-200 dark:bg-gray-800 rounded-lg px-6 py-4 overflow-x-scroll no-scrollbar">
             {Object.keys(parametersData).map((parameter) => (
               <li
                 key={parameter}
@@ -192,8 +190,8 @@ const IndexPage = () => {
 
           <div className='flex flex-col w-full flex-grow flex-wrap bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-500'>
 
-            <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">SKUs Gerados</h2>
-            <div className='border border-gray-500 rounded-lg'>
+            <h2 className="top-0 text-2xl font-bold mb-4 text-black dark:text-white">SKUs Gerados</h2>
+            <div className='w-full border border-gray-500 rounded-lg overflow-x-scroll no-scrollbar'>
               <table className="w-full table-auto">
                 <thead>
                   <tr>
