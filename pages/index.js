@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BsClipboard } from 'react-icons/bs';
 import parametersData from '../parameters.json';
 
 const parameterOrder = ['Marca', 'Nome', 'Categoria', 'Cor', 'Subcategoria', 'Tamanho'];
@@ -25,6 +26,17 @@ const generateSKUCombinations = (selectedParameters) => {
 
   generateCombo('', [], 0);
   return combinations;
+};
+
+const copyToClipboard = (text) => {
+  const textarea = document.createElement('textarea');
+  textarea.textContent = text;
+  textarea.style.position = 'absolute';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
 };
 
 const IndexPage = () => {
@@ -151,39 +163,57 @@ const IndexPage = () => {
           <div className='flex flex-col w-full flex-grow flex-wrap bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-500'>
 
             <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">SKUs Gerados</h2>
-            <table className="w-full table-auto border border-gray-500">
-              <thead>
-                <tr>
-                  <th className="px-4 py-2 text-black dark:text-white text-left">SKU</th>
-                  {parameterOrder.map((parameter) => (
-                    <th key={parameter} className="px-4 py-2 text-black dark:text-white text-left">
-                      {parameter}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {skuList.map((skuData, index) => (
-                  <tr key={index} className="even:bg-gray-700 odd:bg-gray-600">
-                    <td className="px-4 leading-tallest text-white font-mono">{skuData.sku}</td>
-                    {parameterOrder.map((parameter) => {
-                      const option = parametersData[parameter].find(
-                        (option) => option.id === skuData.values[parameter]
-                      );
-                      return (
-                        <td
-                          key={parameter}
-                          className="px-4 leading-tallest text-white font-mono"
-                        >
-                          {option ? option.value : ""}
-                        </td>
-                      );
-                    })}
+            <div className='border border-gray-500 rounded-lg'>
+              <table className="w-full table-auto">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-2 text-black dark:text-white text-center">Ações</th> {/* Add action column */}
+                    <th className="px-4 py-2 text-black dark:text-white text-left">SKU</th>
+                    {parameterOrder.map((parameter) => (
+                      <th key={parameter} className="px-4 py-2 text-black dark:text-white text-left">
+                        {parameter}
+                      </th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-
+                </thead>
+                <tbody>
+                  {skuList.map((skuData, index) => (
+                    <tr
+                      key={index}
+                      className="even:bg-gray-700 odd:bg-gray-600 cursor-pointer"
+                      onClick={() => copyToClipboard(skuData.sku)} // Copy SKU when row is clicked
+                    >
+                      <td className="px-4 leading-tallest text-white font-mono text-center">
+                        <button
+                          type="button"
+                          className="text-white"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent row click event
+                            copyToClipboard(skuData.sku);
+                          }}
+                        >
+                          <BsClipboard />
+                        </button>
+                      </td>
+                      <td className="px-4 leading-tallest text-white font-mono">{skuData.sku}</td>
+                      {parameterOrder.map((parameter) => {
+                        const option = parametersData[parameter].find(
+                          (option) => option.id === skuData.values[parameter]
+                        );
+                        return (
+                          <td
+                            key={parameter}
+                            className="px-4 leading-tallest text-white font-mono"
+                          >
+                            {option ? option.value : ""}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </form>
       </div>
