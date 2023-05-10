@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import parametersData from '../parameters.json';
 
+const parameterOrder = ['Marca', 'Nome', 'Categoria', 'Cor', 'Subcategoria', 'Tamanho'];
 const generateSKUCombinations = (selectedParameters) => {
-  const parameterOrder = ['Marca', 'Nome', 'Categoria', 'Cor', 'Subcategoria', 'Tamanho'];
   const combinations = [];
 
-  function generateCombo(prefix, currentIndex) {
+  function generateCombo(prefix, values, currentIndex) {
     if (currentIndex === parameterOrder.length) {
-      combinations.push(prefix);
+      combinations.push({ sku: prefix, values });
       return;
     }
 
@@ -15,15 +15,16 @@ const generateSKUCombinations = (selectedParameters) => {
     const currentValues = selectedParameters[currentParameter] || [];
 
     if (currentValues.length === 0) {
-      generateCombo(prefix, currentIndex + 1);
+      generateCombo(prefix, { ...values }, currentIndex + 1);
     } else {
       for (const value of currentValues) {
-        generateCombo(prefix + value, currentIndex + 1);
+        generateCombo(prefix + value, { ...values, [currentParameter]: value }, currentIndex + 1);
       }
     }
   }
 
-  generateCombo('', 0);
+
+  generateCombo('', [], 0);
   return combinations;
 };
 
@@ -89,23 +90,31 @@ const IndexPage = () => {
   };
 
   return (
-    <main className='dark:bg-black bg-gray-100 min-h-screen'>
+    <main className='dark:bg-black bg-gray-100 min-h-screen overflow-x-hidden'>
       <div className="mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4 dark:text-white text-black">SKU Generator</h1>
-        <button
-          type="button" // Set the button type to "button"
-          onClick={clearForm}
-          className="px-4 py-2 bg-red-600 text-white rounded-md mb-12"
-        >
-          Limpar resultados
-        </button>
-        <form onSubmit={handleSubmit} className="flex flex-row w-full justify-between items-start gap-4">
+        <h1 className="text-4xl font-bold mb-4 dark:text-white text-black ">SKU Generator</h1>
+        <form onSubmit={handleSubmit} className="flex flex-col w-full justify-between items-start gap-4">
+          <div className='flex flex-row w-96 gap-6'>
+            <button
+              type="button" // Set the button type to "button"
+              onClick={clearForm}
+              className="px-4 py-2 bg-red-600 text-white rounded-md"
+            >
+              Limpar resultados
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md"
+            >
+              Gerar SKUs
+            </button>
+          </div>
 
-          <ul className="flex flex-row gap-4 bg-gray-200 dark:bg-gray-800 rounded-lg p-6">
+          <ul className="flex flex-row gap-4 w-full bg-gray-200 dark:bg-gray-800 rounded-lg p-6">
             {Object.keys(parametersData).map((parameter) => (
               <li
                 key={parameter}
-                className="flex flex-col"
+                className="flex flex-col w-full"
                 data-tooltip-target="tooltip-default"
               >
                 <p className="text-lg font-semibold mb-2 text-black dark:text-gray-200">
@@ -138,24 +147,42 @@ const IndexPage = () => {
             ))}
           </ul>
 
-          <div className='flex flex-col w-auto flex-grow flex-wrap bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-500'>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md"
-            >
-              Gerar SKUs
-            </button>
+          <div className='flex flex-col w-full flex-grow flex-wrap bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-500'>
 
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-black dark:text-white">SKUs Gerados</h2>
+            <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">SKUs Gerados</h2>
             <table className="w-full table-auto">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2 text-black dark:text-white">SKU</th>
+                  {parameterOrder.map((parameter) => (
+                    <th key={parameter} className="px-4 py-2 text-black dark:text-white">
+                      {parameter}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
               <tbody>
-                {skuList.map((sku, index) => (
+                {skuList.map((skuData, index) => (
                   <tr key={index} className="bg-gray-700">
-                    <td className="px-4 leading-tallest text-white font-mono">{sku}</td>
+                    <td className="px-4 leading-tallest text-white font-mono">{skuData.sku}</td>
+                    {parameterOrder.map((parameter) => {
+                      const option = parametersData[parameter].find(
+                        (option) => option.id === skuData.values[parameter]
+                      );
+                      return (
+                        <td
+                          key={parameter}
+                          className="px-4 leading-tallest text-white font-mono"
+                        >
+                          {option ? option.value : ""}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>
             </table>
+
           </div>
         </form>
       </div>
